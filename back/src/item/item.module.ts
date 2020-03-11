@@ -8,10 +8,6 @@ import { ItemSchema } from './schemas/item.schema';
 import { MorganModule } from 'nest-morgan';
 
 
-
-
-
-
 @Module({
   imports: [
     MorganModule.forRoot(),
@@ -19,7 +15,8 @@ import { MorganModule } from 'nest-morgan';
     MongooseModule.forFeature([{ name: 'Item', schema: ItemSchema }]),
   ],
   providers: [ItemService],
-  controllers: [ItemController]
+  controllers: [ItemController],
 })
 
-export class ItemModule { }
+export class ItemModule {
+}

@@ -11,10 +11,13 @@ export default class Nav extends Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <Link className="navbar-brand" to="/create"> create Item </Link>
+                  <Link className="navbar-brand" to="/create"> Create </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="navbar-brand" to="/"> AP333P </Link>
+                  <input className="form-control navbar-brand" type="search" placeholder="Search" aria-label="Search" />
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-outline-success my-2 my-sm-1" type="submit">Search</button>
                 </li>
 
               </ul>

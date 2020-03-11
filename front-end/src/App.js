@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Nav/>
         <Route path="/" exact component={List}/>
-        <Route path="/edit/:id" component={CreateData}/>
+        <Route path="/update/:id" component={CreateData}/>
         <Route path="/create" component={CreateData}/>
       </Router>
 

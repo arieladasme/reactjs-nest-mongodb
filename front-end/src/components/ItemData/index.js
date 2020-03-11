@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ItemData = ({ title, img, date, id, deleteData, desc }) => {
 
@@ -19,6 +19,7 @@ const ItemData = ({ title, img, date, id, deleteData, desc }) => {
           <button className="btn btn-danger" onClick={() => deleteData(id)}>
             Delete
           </button>
+          <Link className="btn btn-secondary" to={"/update/" + id}> Edit </Link>
         </div>
       </div>
     </div>

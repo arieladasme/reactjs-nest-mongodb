@@ -23,7 +23,6 @@ export class ItemController {
   }
 
   // Get Items /item
-  // @Get('/list')
   @Get('/')
   async getItems(@Res() res) {
     const items = await this.itemService.getItems();

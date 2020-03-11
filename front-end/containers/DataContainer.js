@@ -7,25 +7,27 @@ export default class List extends Component {
 
   state = {
     items: []
-  }
+  };
+
+  url_base = 'http://localhost:4000/item/';
 
   componentDidMount() {
     console.log(this.props.match.params.id);
     this.getData();
-  }
+  };
 
   // Get
   async getData() {
-    const res = await axios.get('http://localhost:4000/item');
+    const res = await axios.get(this.url_base);
     this.setState({ items: res.data });
-  }
+  };
 
   // delete
   deleteData = async (id) => {
-    await axios.delete('http://localhost:4000/item/delete?itemID=' + id);
+    await axios.delete(`${this.url_base}delete?itemID=` + id);
     this.getData();
     console.log(id);
-  }
+  };
 
 
   render() {

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import moment from 'moment';
 
-export default class CreateData extends Component {
+class CreateData extends Component {
 
   // establesco estado de la aplicacion
   state = {
@@ -14,27 +12,28 @@ export default class CreateData extends Component {
     content: '',
     image: '',
     edit: false,
-    _id: ''
+    _id: '',
 
   };
+
+  url_base = 'http://localhost:4000/item/';
 
   async componentDidMount() {
 
     // if update
-    if(this.props.match.params.id){
-      const res = await axios.get('http://localhost:4000/item/' + this.props.match.params.id );
+    if (this.props.match.params.id) {
+      const res = await axios.get(this.url_base + this.props.match.params.id);
 
       this.setState({
         title: res.data.itemName,
         content: res.data.itemDesc,
         image: res.data.itemImgURL,
         edit: true,
-        _id: this.props.match.params.id
+        _id: this.props.match.params.id,
       });
 
     }
   }
-
 
   //Submnit
   onSubmit = async (e) => {
@@ -44,20 +43,18 @@ export default class CreateData extends Component {
     const setData = {
       itemName: this.state.title,
       itemDesc: this.state.content,
-      itemImgURL: this.state.image
+      itemImgURL: this.state.image,
     };
-    console.log("asdasdasd");
-    if(this.state.edit){
-      console.log("editando");
-      await axios.put('http://localhost:4000/item/update?itemID=' + this.state._id, setData);
+
+    if (this.state.edit) {
+      console.log('editando');
+      await axios.put(`${this.url_base}update?itemID=` + this.state._id, setData);
     } else {
-      await axios.post('http://localhost:4000/item/create', setData);
+      await axios.post(`${this.url_base}create`, setData);
     }
 
     // Devuelvo al inicio
     window.location.href = '/';
-
-    //console.log(this.state.title, this.state.content);
   };
 
 
@@ -71,7 +68,7 @@ export default class CreateData extends Component {
   render() {
     return (
       <div className="col-md-6 offset-md-3">
-        <h4>CrearItem</h4>
+        <h4>Create Item</h4>
 
         {/* SELECT */}
         <div className="form-group">
@@ -113,3 +110,4 @@ export default class CreateData extends Component {
   }
 }
 
+export default CreateData;
